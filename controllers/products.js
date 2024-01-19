@@ -5,8 +5,9 @@ const getAllProducts = async (req, res, next) => {
     res.json({products: products})
 }
 
-const getAllProductsStatic = (req, res, next) => {
-    res.json({products: "All Products Static"})
+const getAllProductsStatic = async (req, res, next) => {
+    const products = await Product.find({featured:true})
+    res.json({products: products, nbhits:products.length})
 }
 
 module.exports = {
